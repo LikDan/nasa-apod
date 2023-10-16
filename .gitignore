@@ -1,0 +1,4 @@
+.env
+.env.docker
+docker/pgdata
+docker/storage
