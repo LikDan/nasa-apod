@@ -2,16 +2,16 @@ package main
 
 import (
 	"context"
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"log"
 	"os"
 )
 
-var database *pgx.Conn
+var database *pgxpool.Pool
 
 func init() {
 	var err error
-	database, err = pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+	database, err = pgxpool.New(context.Background(), os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Fatalf("Unable to connect to database: %v\n", err)
 	}

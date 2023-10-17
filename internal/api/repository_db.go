@@ -3,7 +3,7 @@ package api
 import (
 	"awesomeProject2/internal/shared"
 	"context"
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"time"
 )
 
@@ -13,10 +13,10 @@ type RepositoryDB interface {
 }
 
 type repositoryDB struct {
-	database *pgx.Conn
+	database *pgxpool.Pool
 }
 
-func NewRepositoryDB(database *pgx.Conn) RepositoryDB {
+func NewRepositoryDB(database *pgxpool.Pool) RepositoryDB {
 	return &repositoryDB{
 		database: database,
 	}
